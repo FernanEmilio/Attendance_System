@@ -1,0 +1,432 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: localhost:3308
+-- Tiempo de generación: 29-10-2022 a las 01:54:33
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `bdproyectofinal`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `alumno`
+--
+
+CREATE TABLE `alumno` (
+  `DPI` varchar(20) NOT NULL,
+  `Carrera` varchar(75) NOT NULL,
+  `Nombre` varchar(75) NOT NULL,
+  `Email` varchar(25) NOT NULL,
+  `Tel` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `alumno`
+--
+
+INSERT INTO `alumno` (`DPI`, `Carrera`, `Nombre`, `Email`, `Tel`) VALUES
+('2897312160401', 'INGENIERIA EN SISTEMAS', 'FERNAN EMILIO RIXQUIACCHE PEREZ', 'frixquiacchep@miumg.edu.gt', '48183456'),
+('1234567890123', 'INGENIERIA EN TELECOMUNICACIONES', 'HUGO ERNESTO BARRIOS ROSALES', 'hbarriosr@miumg.edu.gt', '88888888'),
+('8888888888888', 'INGENIERIA EN TELECOMUNICACIONES', 'TESTER TESTER', 'tester@miumg.edu.gt', '999999999'),
+('4444444444444', 'INGENIERIA EN SISTEMAS', 'MARIA FERNANDA LOPEZ', 'mlopez@miumg.edu.gt', '444444444'),
+('5555555555555', 'ADMINISTRACION', 'LUIS ANTONIO GOMEZ', 'lagomez@miumg.edu.gt', '555555555'),
+('6666666666666', 'INGENIERIA EN TELECOMUNICACIONES', 'SOFIA VALENTINA HERRERA', 'sherrera@miumg.edu.gt', '666666666');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asignacion`
+--
+
+CREATE TABLE `asignacion` (
+  `numeroAsignacion` int(11) NOT NULL,
+  `dpiEstudiante` varchar(20) NOT NULL,
+  `Nombreestudiante` varchar(75) NOT NULL,
+  `carrera` varchar(75) NOT NULL,
+  `curso1` varchar(75) NOT NULL,
+  `curso2` varchar(75) NOT NULL,
+  `curso3` varchar(75) NOT NULL,
+  `curso4` varchar(75) NOT NULL,
+  `curso5` varchar(75) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `asignacion`
+--
+
+INSERT INTO `asignacion` (`numeroAsignacion`, `dpiEstudiante`, `Nombreestudiante`, `carrera`, `curso1`, `curso2`, `curso3`, `curso4`, `curso5`) VALUES
+(12, '2897312160401', 'FERNAN EMILIO RIXQUIACCHE PEREZ', 'INGENIERIA EN SISTEMAS', 'DESARROLLO WEB', 'REDES I', 'INGENIERIA EN TELECOMUNICACIONES DE COMPUTADORAS', 'PROGRAMACION I', 'ETICA PROFESIONAL'),
+(13, '1234567890123', 'HUGO ERNESTO BARRIOS ROSALES', 'INGENIERIA EN TELECOMUNICACIONES', 'RADIO FRECUENCIAS', 'TRANSMICION DE DATOS', 'CALCULO I', 'METODO Y TECNICA DE DISEÑO', 'GEOMETRIA'),
+(14, '4444444444444', 'MARIA FERNANDA LOPEZ', 'INGENIERIA EN SISTEMAS', 'DESARROLLO WEB', 'REDES I', 'INGENIERIA EN TELECOMUNICACIONES DE COMPUTADORAS', 'PROGRAMACION I', 'ETICA PROFESIONAL'),
+(15, '5555555555555', 'LUIS ANTONIO GOMEZ', 'ADMINISTRACION', 'RADIO FRECUENCIAS', 'TRANSMICION DE DATOS', 'CALCULO I', 'METODO Y TECNICA DE DISEÑO', 'GEOMETRIA');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asistencia`
+--
+
+CREATE TABLE `asistencia` (
+  `idAsistencia` int(11) NOT NULL,
+  `DPIEstudiante` varchar(20) NOT NULL,
+  `estudiante` varchar(50) NOT NULL,
+  `curso` varchar(50) NOT NULL,
+  `fecha` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `asistencia`
+--
+
+INSERT INTO `asistencia` (`idAsistencia`, `DPIEstudiante`, `estudiante`, `curso`, `fecha`) VALUES
+(1, '1234567890123', 'HUGO ERNESTO BARRIOS ROSALES', 'RADIO FRECUENCIAS', '2022-10-28'),
+(2, '1234567890123', 'HUGO ERNESTO BARRIOS ROSALES', 'RADIO FRECUENCIAS', '2022-11-04'),
+(3, '1234567890123', 'HUGO ERNESTO BARRIOS ROSALES', 'RADIO FRECUENCIAS', '2022-11-11'),
+(4, '1234567890123', 'HUGO ERNESTO BARRIOS ROSALES', 'RADIO FRECUENCIAS', '2022-11-18'),
+(5, '1234567890123', 'HUGO ERNESTO BARRIOS ROSALES', 'RADIO FRECUENCIAS', '2022-11-25'),
+(6, '1234567890123', 'HUGO ERNESTO BARRIOS ROSALES', 'RADIO FRECUENCIAS', '2022-12-02'),
+(7, '2897312160401', 'FERNAN EMILIO RIXQUIACCHE PEREZ', 'DESARROLLO WEB', '2022-12-09'),
+(8, '8888888888888', 'TESTER TESTER', 'TRANSMICION DE DATOS', '2022-12-16'),
+(9, '1234567890123', 'HUGO ERNESTO BARRIOS ROSALES', 'RADIO FRECUENCIAS', '2022-12-23'),
+(10, '2897312160401', 'FERNAN EMILIO RIXQUIACCHE PEREZ', 'REDES I', '2022-12-30');
+
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `carreras`
+--
+
+CREATE TABLE `carreras` (
+  `numcarrera` int(11) NOT NULL,
+  `NombreCarreta` varchar(75) NOT NULL,
+  `NumSemestre` int(11) NOT NULL,
+  `NumCursoSemestre` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `carreras`
+--
+
+INSERT INTO `carreras` (`numcarrera`, `NombreCarreta`, `NumSemestre`, `NumCursoSemestre`) VALUES
+(1, 'INGENIERIA EN SISTEMAS', 2, 5),
+(2, 'ADMINISTRACION', 2, 5),
+(3, 'INGENIERIA EN TELECOMUNICACIONES', 2, 5),
+(4, 'PSICOLOGÍA', 2, 5),
+(5, 'DERECHO', 2, 5),
+(6, 'MEDICINA', 2, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ciclo`
+--
+
+CREATE TABLE `ciclo` (
+  `idCiclo` int(11) NOT NULL,
+  `numero` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `ciclo`
+--
+
+INSERT INTO `ciclo` (`idCiclo`, `numero`) VALUES
+(1, 1),
+(2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cursos`
+--
+
+CREATE TABLE `cursos` (
+  `IdCurso` int(11) NOT NULL,
+  `Carrera` varchar(75) NOT NULL,
+  `DocenteImparte` varchar(75) NOT NULL,
+  `NombreCurso` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cursos`
+--
+
+INSERT INTO `cursos` (`IdCurso`, `Carrera`, `DocenteImparte`, `NombreCurso`) VALUES
+(1, 'INGENIERIA EN SISTEMAS', 'CARLOS FERNANDO LOPEZ', 'DESARROLLO WEB'),
+(2, 'INGENIERIA EN SISTEMAS', 'CARLOS FERNANDO LOPEZ', 'REDES I'),
+(3, 'INGENIERIA EN SISTEMAS', 'CARLOS FERNANDO LOPEZ', 'INGENIERIA EN TELECOMUNICACIONES DE COMPUTADORAS'),
+(4, 'INGENIERIA EN SISTEMAS', 'OSCAR ARNOLDO REYES', 'PROGRAMACION I'),
+(5, 'INGENIERIA EN SISTEMAS', 'CARLOS FERNANDO LOPEZ', 'ETICA PROFESIONAL'),
+(6, 'INGENIERIA EN TELECOMUNICACIONES', 'DANIELA MARIA GONZALEZ', 'RADIO FRECUENCIAS'),
+(7, 'INGENIERIA EN TELECOMUNICACIONES', 'DANIELA MARIA GONZALEZ', 'TRANSMICION DE DATOS'),
+(8, 'INGENIERIA EN TELECOMUNICACIONES', 'DANIELA MARIA GONZALEZ', 'CALCULO I'),
+(9, 'INGENIERIA EN TELECOMUNICACIONES', 'DANIELA MARIA GONZALEZ', 'METODO Y TECNICA DE DISEÑO'),
+(10, 'INGENIERIA EN TELECOMUNICACIONES', 'ESTEFANIA LORENA MORALES', 'GEOMETRIA'),
+(11, 'ADMINISTRACION', 'OSCAR ARNOLDO REYES', 'FUNDAMENTOS DE ADMINISTRACION'),
+(12, 'ADMINISTRACION', 'CARLOS FERNANDO LOPEZ', 'CONTABILIDAD I'),
+(13, 'ADMINISTRACION', 'DANIELA MARIA GONZALEZ', 'MERCADEO BASICO'),
+(14, 'ADMINISTRACION', 'ESTEFANIA LORENA MORALES', 'ESTADISTICA I'),
+(15, 'ADMINISTRACION', 'CARLOS FERNANDO LOPEZ', 'GESTION DE PROYECTOS'),
+(16, 'INGENIERIA ESPACIAL', 'OSCAR ARNOLDO REYES', 'ASTRONOMIA BASICA'),
+(17, 'INGENIERIA ESPACIAL', 'CARLOS FERNANDO LOPEZ', 'MECANICA ORBITAL'),
+(18, 'INGENIERIA ESPACIAL', 'DANIELA MARIA GONZALEZ', 'PROPULSION ESPACIAL'),
+(19, 'INGENIERIA ESPACIAL', 'ESTEFANIA LORENA MORALES', 'SISTEMAS DE NAVEGACION'),
+(20, 'INGENIERIA ESPACIAL', 'DANIELA MARIA GONZALEZ', 'DISEÑO DE SATELITES');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `docentes`
+--
+
+CREATE TABLE `docentes` (
+  `DPI` varchar(20) NOT NULL,
+  `Nombre` varchar(60) NOT NULL,
+  `CorreoElectronico` varchar(60) NOT NULL,
+  `Telefono` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `docentes`
+--
+
+INSERT INTO `docentes` (`DPI`, `Nombre`, `CorreoElectronico`, `Telefono`) VALUES
+('1111111111111', 'CARLOS FERNANDO LOPEZ', 'flopex@miumg.edu.gt', '74895478'),
+('2222222222222', 'DANIELA MARIA GONZALEZ', 'dgonzales@miumg.edu.gt', '96587451'),
+('3333333333333', 'ESTEFANIA LORENA MORALES', 'emorales@miumg.edu.gt', '45278943'),
+('4444444444444', 'OSCAR ARNOLDO REYES', 'oreyes@miumg.edu.gt', '78941256'),
+('5555555555555', 'LUCIA ISABEL PAREDES', 'lparedes@miumg.edu.gt', '65748921');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`) VALUES
+(1, 'Administrador'),
+(2, 'Docente'),
+(3, 'Alumno');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `seccion`
+--
+
+CREATE TABLE `seccion` (
+  `idSeccion` int(11) NOT NULL,
+  `NombreCarrera` varchar(50) NOT NULL,
+  `ciclo` int(11) NOT NULL,
+  `nombreSeccion` varchar(50) DEFAULT NULL,
+  `estado` binary(1) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `seccion`
+--
+
+INSERT INTO `seccion` (`idSeccion`, `NombreCarrera`, `ciclo`, `nombreSeccion`, `estado`) VALUES
+(1, 'INGENIERIA EN SISTEMAS', 2, 'A', 0x31),
+(2, 'INGENIERIA EN TELECOMUNICACIONES', 2, 'A', 0x31),
+(3, 'HUMANIDADES', 2, 'A', 0x31),
+(4, 'ADMINISTRACION', 2, 'A', 0x31),
+(5, 'ADMINISTRACION', 2, 'B', 0x31),
+(6, 'INGENIERIA ESPACIAL', 2, 'A', 0x31),
+(7, 'INGENIERIA ESPACIAL', 2, 'B', 0x31),
+(8, 'INGENIERIA EN SISTEMAS', 2, 'B', 0x31),
+(9, 'INGENIERIA EN TELECOMUNICACIONES', 2, 'B', 0x31),
+(10, 'HUMANIDADES', 2, 'B', 0x31);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `role_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`, `role_id`) VALUES
+(1, 'admin@admin.GT', 'admin123', 1),
+(2, 'frixquiacchep@miumg.edu.gt', 'fernan123', 3),
+(3, 'ALANJACINTO@miumg.edu.gt', 'alanpass123', 2),
+(4, 'ANDREAJOCEFINA@miumg.edu.gt', 'andreapass123', 2),
+(5, 'hbarriosr@miumg.edu.gt', 'hugo12345', 3),
+(6, 'tester@miumg.edu.gt', 'testpass123', 3),
+(7, 'claudia.gomez@miumg.edu.gt', 'claudiapass123', 3),
+(8, 'pedro.lopez@miumg.edu.gt', 'pedropass123', 3),
+(9, 'maria.perez@miumg.edu.gt', 'mariapass123', 3);
+(10, 'flopex@miumg.edu.gt', 'passwordForCarlos', 2),
+(11, 'dgonzales@miumg.edu.gt', 'passwordForDaniela', 2),
+(12, 'emorales@miumg.edu.gt', 'passwordForEstefania', 2),
+(13, 'oreyes@miumg.edu.gt', 'passwordForOscar', 2),
+(14, 'lparedes@miumg.edu.gt', 'passwordForLucia', 2);
+-- --------------------------------------------------------
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `alumno`
+--
+ALTER TABLE `alumno`
+  ADD PRIMARY KEY (`DPI`);
+
+--
+-- Indices de la tabla `asignacion`
+--
+ALTER TABLE `asignacion`
+  ADD PRIMARY KEY (`numeroAsignacion`);
+
+--
+-- Indices de la tabla `asistencia`
+--
+ALTER TABLE `asistencia`
+  ADD PRIMARY KEY (`idAsistencia`);
+
+--
+-- Indices de la tabla `carreras`
+--
+ALTER TABLE `carreras`
+  ADD PRIMARY KEY (`numcarrera`);
+
+--
+-- Indices de la tabla `ciclo`
+--
+ALTER TABLE `ciclo`
+  ADD PRIMARY KEY (`idCiclo`);
+
+--
+-- Indices de la tabla `cursos`
+--
+ALTER TABLE `cursos`
+  ADD PRIMARY KEY (`IdCurso`);
+
+--
+-- Indices de la tabla `docentes`
+--
+ALTER TABLE `docentes`
+  ADD PRIMARY KEY (`DPI`);
+
+--
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indices de la tabla `seccion`
+--
+ALTER TABLE `seccion`
+  ADD PRIMARY KEY (`idSeccion`);
+
+--
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `fk_roles` (`role_id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `asignacion`
+--
+ALTER TABLE `asignacion`
+  MODIFY `numeroAsignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `asistencia`
+--
+ALTER TABLE `asistencia`
+  MODIFY `idAsistencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `carreras`
+--
+ALTER TABLE `carreras`
+  MODIFY `numcarrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `ciclo`
+--
+ALTER TABLE `ciclo`
+  MODIFY `idCiclo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `cursos`
+--
+ALTER TABLE `cursos`
+  MODIFY `IdCurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `seccion`
+--
+ALTER TABLE `seccion`
+  MODIFY `idSeccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `fk_roles` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

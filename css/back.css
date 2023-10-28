@@ -1,0 +1,20 @@
+.wave {
+    position: relative;
+}
+
+.waves {
+    position: absolute;
+}
+
+
+body {
+    background-color: #d3d5b0;
+}
+
+.bs-color{
+    background-color: #b5cea4 !important;
+}
+
+.new-nav-class{
+    background: #8c7c62 !important;
+}
